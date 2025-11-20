@@ -68,6 +68,12 @@ public interface DevServicesConfig {
    @WithDefault("true")
    boolean shared();
 
+    /**
+     * Option to disable host access - can be used for issues with kubernetes-client dev services compatability
+     */
+   @WithDefault("true")
+   boolean hostAccess();
+
    /**
     * The value of the {@code quarkus-dev-service-microcks} label attached to the started container.
     * This property is used when {@code shared} is set to {@code true}.

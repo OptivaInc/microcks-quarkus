@@ -11,11 +11,12 @@ on:
       - '.gitignore'
       - 'LICENSE'
       - '*.md'
-permissions: read-all
 jobs:
   build-verify-package:
     runs-on: ubuntu-latest
-    environment: Build
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Checkout Code
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
@@ -33,3 +34,8 @@ jobs:
 
       - name: Verify Javadoc completion
         run: mvn -B javadoc:javadoc
+
+      - name: Publish
+        run: mvn deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.PACKAGES_TOKEN }}

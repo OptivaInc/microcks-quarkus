@@ -4,7 +4,7 @@
 
   <groupId>io.github.microcks.quarkus</groupId>
   <artifactId>quarkus-microcks-parent</artifactId>
-  <version>0.4.3-SNAPSHOT</version>
+  <version>0.4.3-OPTIVA</version>
   <packaging>pom</packaging>
   <modules>
     <module>deployment</module>
@@ -44,14 +44,19 @@
   </scm>
 
   <distributionManagement>
-    <snapshotRepository>
-      <id>oss-sonatype-staging</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    </snapshotRepository>
     <repository>
-      <id>oss-sonatype-staging</id>
-      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+      <id>github</id>
+      <name>Github</name>
+      <url>https://maven.pkg.github.com/OptivaInc/microcks-quarkus</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
     </repository>
+    <snapshotRepository>
+      <id>github</id>
+      <name>Github</name>
+      <url>https://maven.pkg.github.com/OptivaInc/microcks-quarkus</url>
+    </snapshotRepository>
   </distributionManagement>
 
   <properties>
@@ -203,15 +208,6 @@
             <configuration>
               <spdxFile>${project.reporting.outputDirectory}/${project.artifactId}-${project.version}.spdx-sbom.json</spdxFile>
               <spdxDocumentNamespace>http://spdx.org/spdxpackages/${project.artifactId}-${project.version}</spdxDocumentNamespace>
-            </configuration>
-          </plugin>
-          <plugin>
-            <groupId>org.jreleaser</groupId>
-            <artifactId>jreleaser-maven-plugin</artifactId>
-            <version>1.19.0</version>
-            <inherited>false</inherited>
-            <configuration>
-              <configFile>jreleaser.yml</configFile>
             </configuration>
           </plugin>
         </plugins>
